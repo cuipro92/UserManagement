@@ -1,0 +1,22 @@
+CREATE TABLE `user_management`.`account` (
+  `AccountID` VARCHAR(45) NOT NULL,
+  `Account` VARCHAR(45) NULL,
+  `Password` VARCHAR(45) NULL,
+  `Roles` INT NULL,
+  PRIMARY KEY (`AccountID`));
+
+CREATE TABLE `user_management`.`user` (
+  `UserID` VARCHAR(45) NOT NULL,
+  `AccountID` VARCHAR(45) NULL,
+  `UserName` NVARCHAR(100) NULL,
+  `Birthday` DATETIME NULL,
+  `Address` NVARCHAR(100) NULL,
+  `Email` NVARCHAR(100) NULL,
+  `Gender` NVARCHAR(45) NULL,
+  PRIMARY KEY (`UserID`),
+  INDEX `AccountID_idx` (`AccountID` ASC),
+  CONSTRAINT `AccountID`
+    FOREIGN KEY (`AccountID`)
+    REFERENCES `user_management`.`account` (`AccountID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
